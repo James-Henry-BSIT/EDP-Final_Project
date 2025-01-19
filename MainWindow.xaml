@@ -1,0 +1,28 @@
+﻿<Window x:Class="EDP_Final_Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EDP_Final_Project"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="940" Height="548" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" ResizeMode="NoResize"
+        PreviewMouseDown="Window_PreviewMouseDown">
+
+    <Border CornerRadius="25" Background="#FF111012">
+        <!-- Rounded Window -->
+        <Border.Clip>
+            <RectangleGeometry Rect="0,0,940,548" RadiusX="25" RadiusY="25" />
+        </Border.Clip>
+        <!-- End Rounded Window -->
+        <Grid>
+            <Image x:Name="Header" Margin="0,0,114,481" Source="/Head.png" Stretch="Fill" Panel.ZIndex="10" RenderTransformOrigin="0.5,0.5" Opacity="0.05"  MouseDown="Header_MouseDown"/>
+            <Image x:Name="Minimize" Margin="825,21,78,490" Panel.ZIndex="10" Source="/Minimize.png" Stretch="Fill" Opacity="1" MouseEnter="Minimize_MouseEnter" MouseLeave="Minimize_MouseLeave"  MouseDown="Minimize_Function" Cursor="Hand" Width="25" Height="25"/>
+            <Image x:Name="Close" Margin="880,21,23,490" Panel.ZIndex="10" Source="/Close.png" Stretch="Fill" Opacity="100" MouseEnter="Close_MouseEnter" MouseLeave="Close_MouseLeave" MouseDown="Close_Function" Cursor="Hand" Width="25" Height="25"/>
+
+            <Grid  Width="940" Height="548">
+                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+            </Grid>
+        </Grid>
+    </Border>
+
+</Window>

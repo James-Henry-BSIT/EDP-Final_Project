@@ -1,0 +1,645 @@
+<Page x:Class="EDP_Final_Project.LoginPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+
+    <Page.Resources>
+        <Style x:Key="UnderlineTextBoxStyle" TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="BorderBrush" Value="#FF80163B" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#FFD3D7F1" />
+            <Setter Property="FontFamily" Value="Cairo Light" />
+            <Setter Property="FontSize" Value="41" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <!-- Border line -->
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" />
+                            <!-- Content of the TextBox -->
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!-- Animation for Hex1 -->
+        <Storyboard x:Key="FloatingAnimation1" RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetName="Hex1" Storyboard.TargetProperty="RenderTransform.X" From="-3" To="9" Duration="0:0:3.4" AutoReverse="True">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="Hex1" Storyboard.TargetProperty="RenderTransform.Y" From="0" To="13" Duration="0:0:2" AutoReverse="True">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <!-- Move Margin Animation -->
+        <Storyboard x:Key="TransformHex1">
+            <ThicknessAnimation Storyboard.TargetName="Hex1"
+                            Storyboard.TargetProperty="(FrameworkElement.Margin)"
+                            To="446,28,-612,-28" Duration="0:0:3">
+                <ThicknessAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </ThicknessAnimation.EasingFunction>
+            </ThicknessAnimation>
+        </Storyboard>
+        <!-- End Move Margin Animation -->
+
+        <!-- Return Margin Animation -->
+        <Storyboard x:Key="Hex1ResetAnimation">
+            <ThicknessAnimation Storyboard.TargetName="Hex1"
+                            Storyboard.TargetProperty="Margin"
+                            To="0,0,0,0" Duration="0:0:3">
+                <ThicknessAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </ThicknessAnimation.EasingFunction>
+            </ThicknessAnimation>
+        </Storyboard>
+        <!-- End Return Margin Animation -->
+        <!-- End Animation for Hex1 -->
+
+        <!-- Animation for Hex2 with different timing -->
+        <Storyboard x:Key="FloatingAnimation2" RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.X" From="-7" To="7" Duration="0:0:3" AutoReverse="True">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Y" From="0" To="14" Duration="0:0:4" AutoReverse="True">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <!-- End Animation for Hex2 -->
+
+        <!-- Opacity animation for RedGlow -->
+        <Storyboard x:Key="RedGlowOpacityAnimation" RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetName="RedGlow"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1.0" To="0.8"
+                             Duration="0:0:2"
+                             AutoReverse="True">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <!-- End Opacity animation for RedGlow -->
+
+        <!-- Opacity animation for LoginForm -->
+        <Storyboard x:Key="FadeOutLoginForm">
+            <DoubleAnimation Storyboard.TargetName="LoginForm"
+                         Storyboard.TargetProperty="Opacity"
+                         From="1" To="0" Duration="0:0:1" />
+        </Storyboard>
+
+        <!-- Fade-in animation for ChangePassForm -->
+        <Storyboard x:Key="FadeInChangePassForm">
+            <DoubleAnimation Storyboard.TargetName="ChangePassForm"
+                         Storyboard.TargetProperty="Opacity"
+                         From="0" To="1" Duration="0:0:1" />
+        </Storyboard>
+        <!-- End Opacity animation for LoginForm -->
+
+        <!-- Fade-out animation for ChangePassForm -->
+        <Storyboard x:Key="FadeOutChangePassForm">
+            <DoubleAnimation Storyboard.TargetName="ChangePassForm"
+                         Storyboard.TargetProperty="Opacity"
+                         From="1"  To="0" Duration="0:0:1" />
+        </Storyboard>
+        <!-- End Fade-out animation for ChangePassForm -->
+
+        <!-- Fade-in animation for LoginForm -->
+        <Storyboard x:Key="FadeInLoginForm">
+            <DoubleAnimation Storyboard.TargetName="LoginForm"
+                         Storyboard.TargetProperty="Opacity"
+                         From="0" To="1" Duration="0:0:1" />
+        </Storyboard>
+        <!-- End Fade-in animation for LoginForm -->
+
+        <!-- Fade-in CodeInput -->
+        <Storyboard x:Key="FadeInCode">
+            <DoubleAnimation Storyboard.TargetName="CodeInput"
+                  Storyboard.TargetProperty="Opacity"
+                  From="0" To="1" Duration="0:0:1" />
+        </Storyboard>
+        <!-- End Fade-in CodeInput -->
+
+        <!-- Fade-out CodeInput -->
+        <Storyboard x:Key="FadeOutCode">
+            <DoubleAnimation Storyboard.TargetName="CodeInput"
+                  Storyboard.TargetProperty="Opacity"
+                  From="1" To="0" Duration="0:0:0.4" />
+        </Storyboard>
+        <!-- End Fade-out CodeInput -->
+
+        <!-- Blur appearing CodeInput -->
+        <!-- Storyboard to blur the grids -->
+        <Storyboard x:Key="BlurStoryboard">
+            <!-- Animate BlurEffect for LoginForm -->
+            <DoubleAnimation Storyboard.TargetName="LoginForm"
+                         Storyboard.TargetProperty="Effect.Radius"
+                         From="0" To="8"
+                         Duration="0:0:0.5" />
+
+            <!-- Animate BlurEffect for RegisterForm -->
+            <DoubleAnimation Storyboard.TargetName="RegisterForm"
+                         Storyboard.TargetProperty="Effect.Radius"
+                         From="0" To="8"
+                         Duration="0:0:0.5" />
+
+            <!-- Animate BlurEffect for ChangePassForm -->
+            <DoubleAnimation Storyboard.TargetName="ChangePassForm"
+                         Storyboard.TargetProperty="Effect.Radius"
+                         From="0" To="8"
+                         Duration="0:0:0.5" />
+
+            <!-- Animate BlurEffect for BackgroundElements -->
+            <DoubleAnimation Storyboard.TargetName="BackgroundElements"
+                         Storyboard.TargetProperty="Effect.Radius"
+                         From="0" To="8"
+                         Duration="0:0:0.5" />
+        </Storyboard>
+        <!-- End Blur appearing CodeInput -->
+
+        <!-- Blur appearing CodeInput -->
+        <!-- Storyboard to blur the grids -->
+        <Storyboard x:Key="StopBlurStoryboard">
+            <!-- Animate BlurEffect for LoginForm -->
+            <DoubleAnimation Storyboard.TargetName="LoginForm"
+                 Storyboard.TargetProperty="Effect.Radius"
+                 From="8" To="0"
+                 Duration="0:0:0.5" />
+
+            <!-- Animate BlurEffect for RegisterForm -->
+            <DoubleAnimation Storyboard.TargetName="RegisterForm"
+                 Storyboard.TargetProperty="Effect.Radius"
+                 From="8" To="0"
+                 Duration="0:0:0.5" />
+
+            <!-- Animate BlurEffect for ChangePassForm -->
+            <DoubleAnimation Storyboard.TargetName="ChangePassForm"
+                 Storyboard.TargetProperty="Effect.Radius"
+                 From="8" To="0"
+                 Duration="0:0:0.5" />
+
+            <!-- Animate BlurEffect for BackgroundElements -->
+            <DoubleAnimation Storyboard.TargetName="BackgroundElements"
+                 Storyboard.TargetProperty="Effect.Radius"
+                 From="8" To="0"
+                 Duration="0:0:0.5" />
+        </Storyboard>
+        <!-- End Blur appearing CodeInput -->
+
+    </Page.Resources>
+
+    <Grid>
+        <Grid x:Name="BackgroundElements" Height="548" Width="942" Grid.ColumnSpan="3" Margin="0,0,-2,0" Grid.RowSpan="2" VerticalAlignment="Top">
+            <Grid.Effect>
+                <BlurEffect Radius="0" />
+            </Grid.Effect>
+            <Image x:Name="RedGlow" Grid.RowSpan="2" Source="/P3.png" Stretch="Fill" Opacity="100"/>
+            <Image x:Name="Hex2" Source="/P2.png" Grid.RowSpan="2">
+                <Image.RenderTransform>
+                    <TranslateTransform />
+                </Image.RenderTransform>
+            </Image>
+            <Image x:Name="Hex1" Source="/P1.png" Grid.RowSpan="2">
+                <Image.RenderTransform>
+                    <TranslateTransform />
+                </Image.RenderTransform>
+            </Image>
+        </Grid>
+
+        <!--LOGIN FORM-->
+        <Grid x:Name="LoginForm" Margin="542,73,62,0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Grid.Effect>
+                <BlurEffect Radius="0" />
+            </Grid.Effect>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image x:Name="LoginUsernameBackground" Source="/Email.png" Stretch="Fill" Opacity="100" Height="48" HorizontalAlignment="Center" Width="323" VerticalAlignment="Top" Margin="0,74,0,0"/>
+            <TextBox x:Name="LoginUsernameTextField" HorizontalAlignment="Left" Margin="50,88,0,0" Width="263" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" Text="USERNAME/EMAIL" GotFocus="LoginUsernameTextField_GotFocus" LostFocus="LoginUsernameTextField_LostFocus" TextChanged="LoginUsernameTextField_TextChanged" VerticalAlignment="Top" BorderThickness="0,0,0,0" SelectionBrush="#FF80163B" />
+
+            <Grid x:Name="LogPassGrid" Width="323" Height="48" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,144,0,0">
+                <Image x:Name="LoginPasswordBackground" Source="images/TextFields/Password.png" Stretch="Fill"/>
+                <!-- PasswordBox -->
+                <PasswordBox x:Name="LoginPasswordBox" HorizontalAlignment="Left" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" Padding="5,0,0,0" Visibility="Visible" GotFocus="LoginPasswordBox_GotFocus" LostFocus="LoginPasswordBox_LostFocus" PasswordChanged="LoginPasswordBox_PasswordChanged" VerticalAlignment="Center" Margin="43,0,0,0" SelectionBrush="#FF80163B" />
+                <!-- TextBox for plain text password -->
+                <TextBox x:Name="LoginPasswordTextField" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" Padding="5,0,0,0" GotFocus="LoginPasswordBox_GotFocus" LostFocus="LoginPasswordBox_LostFocus" TextChanged="LoginPasswordBox_PasswordChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="43,0,0,0" Visibility="Hidden" SelectionBrush="#FF80163B" />
+                <!-- Placeholder TextBlock -->
+                <TextBlock x:Name="LoginPasswordPlaceholder" Text="PASSWORD" VerticalAlignment="Center" Width="221" Height="20" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" Background="#FF59505E" IsHitTestVisible="False" Visibility="Visible" HorizontalAlignment="Center" Padding="5,0,0,0" />
+                <!-- Toggle Button -->
+                <Image x:Name="LogPasswordVisToggle" Source="/HidePass.png" Width="29" Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" MouseLeftButtonDown="LogPasswordVisToggle_MouseLeftButtonDown" Margin="284,0,0,0" Cursor="Hand"/>
+            </Grid>
+            <Image x:Name="RememberCheckbox" Source="/Checkbox1.png" Stretch="Fill" Opacity="1" MouseLeftButtonDown="RememberCheckbox_MouseLeftButtonDown" Cursor="Hand" Height="22" Width="23" Margin="59,222,241,131"/>
+            <Label x:Name="RememberPasswordLabel" Content="REMEMBER MY PASSWORD" HorizontalAlignment="Left" Margin="85,216,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="13.2"/>
+            <Label x:Name="NoAccountLabel" Content="NO ACCOUNT?" HorizontalAlignment="Left" Margin="74,2,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="12.2" FontWeight="Bold" Grid.Row="1" Grid.RowSpan="2"/>
+            <Label x:Name="RegisterNowButton" Content="REGISTER NOW!" HorizontalAlignment="Left" Margin="152,2,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="12.2" FontWeight="Bold" MouseEnter="RegisterNowButton_MouseEnter" MouseLeave="RegisterNowButton_MouseLeave" MouseLeftButtonDown="RegisterNowButton_MouseLeftButtonDown" Cursor="Hand" Grid.Row="1" Grid.RowSpan="2"/>
+            <Label x:Name="ForgotPasswordButton" Content="FORGOT PASSWORD?" HorizontalAlignment="Center" Margin="0,338,0,0" VerticalAlignment="Top" Foreground="#FF6F1535" FontFamily="Cairo Medium" FontSize="14.5" FontWeight="Bold" Background="{x:Null}" MouseEnter="ForgotPasswordButton_MouseEnter" MouseLeave="ForgotPasswordButton_MouseLeave" MouseLeftButtonDown="ForgotPasswordButton_Click"  Cursor="Hand"/>
+            <Label x:Name="LogSignTitle" Content="USER LOGIN" HorizontalAlignment="Left" Margin="74,0,0,0" VerticalAlignment="Top" Foreground="Lavender" FontFamily="Cairo ExtraBold" FontSize="29"/>
+            <Label x:Name="ErrorLog" Content="LOGIN ERROR WARNING HERE" Margin="6,247,5,0"  Foreground="#FFA3384F" FontFamily="Cairo Medium" FontSize="12.2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" VerticalAlignment="Top" Visibility="Hidden"/>
+
+            <Grid x:Name="LogButton" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="7,285,0,0" Cursor="Hand" MouseLeftButtonDown="LoginButton_Click">
+                <!-- Apply a ScaleTransform to the RegButton Grid -->
+                <Grid.RenderTransform>
+                    <ScaleTransform x:Name="ButtonScaleTransform1" ScaleX="1" ScaleY="1" />
+                </Grid.RenderTransform>
+                <!-- Set the RenderTransformOrigin to the center -->
+                <Grid.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5" />
+                </Grid.RenderTransformOrigin>
+                <!-- Triggers for hover effect -->
+                <Grid.Triggers>
+                    <!-- Hover In (scale up with ease-out) -->
+                    <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="LogButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform1" Storyboard.TargetProperty="ScaleX" To="1.05" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform1" Storyboard.TargetProperty="ScaleY" To="1.05" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="HoverRectangle" Storyboard.TargetProperty="Width" To="312" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Hover Out (scale back to original size) -->
+                    <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="LogButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform1" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform1" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="HoverRectangle" Storyboard.TargetProperty="Width" To="0" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Mouse Down (scale down to 0.95) -->
+                    <EventTrigger RoutedEvent="UIElement.PreviewMouseDown" SourceName="LogButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform1" Storyboard.TargetProperty="ScaleX" To="0.98" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform1" Storyboard.TargetProperty="ScaleY" To="0.98" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Mouse Up (return to original scale with ease-in-out) -->
+                    <EventTrigger RoutedEvent="UIElement.PreviewMouseUp" SourceName="LogButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform1" Storyboard.TargetProperty="ScaleX" To="1.05" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseInOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform1" Storyboard.TargetProperty="ScaleY" To="1.05" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseInOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Grid.Triggers>
+                <!-- Clipped Image -->
+                <Grid x:Name="ClippedContainer" Width="312" Height="51" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image x:Name="LogginginButton" Source="/hovbut.png" Stretch="Fill" Opacity="1" Clip="M18,0 L312,0 L312,36 L291.28,51 L0,51 L0,16"/>
+                    <!-- Hover effect: sliding rectangle -->
+                    <Rectangle x:Name="HoverRectangle" Width="0" Height="51" Fill="#9C2348" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top" Clip="M18,0 L312,0 L312,36 L291.28,51 L0,51 L0,16">
+                        <Rectangle.Effect>
+                            <BlurEffect Radius="50" />
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <!-- Button label -->
+                    <TextBlock Text="LOGIN" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="White" FontWeight="Bold" IsHitTestVisible="False" FontFamily="Cairo Light" />
+                </Grid>
+            </Grid>
+        </Grid>
+        <!--LOGIN FORM-->
+
+        <!--REGISTER FORM-->
+        <Grid x:Name="RegisterForm" HorizontalAlignment="Left" Height="470" Margin="542,57,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="323" Visibility="Hidden">
+            <Grid.Effect>
+                <BlurEffect Radius="0" />
+            </Grid.Effect>
+            <Label x:Name="RegisterTitle" Content="REGISTER" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Lavender" FontFamily="Cairo ExtraBold" FontSize="29" Margin="88,0,0,0"/>
+            <Image x:Name="RegEmailBackground" Margin="0,60,0,361" Source="/Email.png" Stretch="Fill" Opacity="100" Height="49"/>
+            <TextBox x:Name="RegEmailTextField" HorizontalAlignment="Left" Margin="49,74,0,0" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" Text="EMAIL" GotFocus="RegisterEmailTextField_GotFocus" LostFocus="RegisterEmailTextField_LostFocus" TextChanged="RegisterEmailTextField_TextChanged" VerticalAlignment="Top" BorderThickness="0,0,0,0" SelectionBrush="#FF80163B" />
+
+            <Image x:Name="RegUsernameBackground" Source="/Username.png" Stretch="Fill" Opacity="100" HorizontalAlignment="Center" VerticalAlignment="Top" Height="48" Margin="0,128,0,0"/>
+            <TextBox x:Name="RegUsernameTextField" HorizontalAlignment="Left" Margin="49,142,0,0" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" Text="USERNAME" GotFocus="RegisterUsernameTextField_GotFocus" LostFocus="RegisterUsernameTextField_LostFocus" TextChanged="RegisterUsernameTextField_TextChanged" VerticalAlignment="Top" BorderThickness="0,0,0,0" SelectionBrush="#FF80163B" />
+
+            <Grid x:Name="RegPassGrid" Width="323" Height="49" Margin="0,198,0,223">
+                <Image x:Name="RegisterPasswordBackground" Source="images/TextFields/Password.png" Stretch="Fill"/>
+                <!-- PasswordBox -->
+                <PasswordBox x:Name="RegisterPasswordBox" HorizontalAlignment="Left" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" Padding="5,0,0,0" Visibility="Visible" GotFocus="RegPasswordBox_GotFocus" LostFocus="RegisterPasswordBox_LostFocus" PasswordChanged="RegisterPasswordBox_PasswordChanged" VerticalAlignment="Center" Margin="49,0,0,0" MaxLength="64" SelectionBrush="#FF80163B" />
+                <!-- TextBox for plain text password -->
+                <TextBox x:Name="RegisterPasswordTextField" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" GotFocus="RegPasswordBox_GotFocus" LostFocus="RegisterPasswordBox_LostFocus" TextChanged="RegPasswordBox_TextChanged" Width="221" Height="20" Visibility="Hidden" MaxLines="1" MaxLength="64" SelectionBrush="#FF80163B" />
+                <!-- Placeholder TextBlock -->
+                <TextBlock x:Name="RegisterPasswordPlaceholder" Text="PASSWORD" VerticalAlignment="Center" Width="221" Height="21" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" Background="#FF59505E" IsHitTestVisible="False" Visibility="Visible" HorizontalAlignment="Left" Padding="5,0,0,0" Margin="49,0,0,0" />
+                <!-- Toggle Button -->
+                <Image x:Name="RegPasswordVisToggle" Source="/HidePass.png" Width="29" Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" MouseLeftButtonDown="RegPasswordVisToggle_MouseLeftButtonDown" Margin="284,0,0,0" Cursor="Hand"/>
+            </Grid>
+            <Grid x:Name="ConfirmPassGrid" Margin="0,269,0,152" Width="323" Height="49">
+                <Image x:Name="RegisterConfirmPasswordBackground" Source="/ConfirmPassword.png" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <!-- PasswordBox -->
+                <PasswordBox x:Name="ConfirmRegPasswordBox" HorizontalAlignment="Left" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" Padding="5,0,0,0" Visibility="Visible" GotFocus="ConRegPasswordBox_GotFocus" LostFocus="ConfirmRegPasswordBox_LostFocus" PasswordChanged="ConfirmRegPasswordBox_PasswordChanged" VerticalAlignment="Center" Margin="49,0,0,0" SelectionBrush="#FF80163B" />
+                <!-- TextBox for plain text password -->
+                <TextBox x:Name="ConfirmRegPasswordTextField" HorizontalAlignment="Left" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" Padding="5,0,0,0" GotFocus="ConRegPasswordBox_GotFocus" LostFocus="ConfirmRegPasswordBox_LostFocus" TextChanged="ConRegPasswordBox_TextChanged" VerticalAlignment="Center" Margin="49,0,0,0" Visibility="Hidden" SelectionBrush="#FF80163B" />
+                <!-- Placeholder TextBlock -->
+                <TextBlock x:Name="ConfirmRegPasswordPlaceholder" Text="CONFIRM PASSWORD" VerticalAlignment="Center" Width="220" Height="21" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" Background="#FF59505E" IsHitTestVisible="False" Visibility="Visible" HorizontalAlignment="Left" Padding="5,0,0,0" Margin="50,0,0,0" />
+                <!-- Toggle Button -->
+                <Image x:Name="ConRegPasswordVisToggle" Source="/HidePass.png" Width="29" Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" MouseLeftButtonDown="ConRegPasswordVisToggle_MouseLeftButtonDown" Margin="284,0,0,0" Cursor="Hand"/>
+            </Grid>
+
+            <Label x:Name="ErrorReg" Content="ERROR WARNING HERE" Margin="6,317,5,0"  Foreground="#FFA3384F" FontFamily="Cairo Medium" FontSize="13.2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="33" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="AlreadyHaveAccount" Content="ALREADY HAVE AN ACCOUNT?" HorizontalAlignment="Left" Margin="52,418,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="12.2" FontWeight="Bold"/>
+            <Label x:Name="SignInButton" Content="SIGN IN" HorizontalAlignment="Left" Margin="212,418,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="12.2" FontWeight="Bold" MouseEnter="SignInButton_MouseEnter" MouseLeave="SignInButton_MouseLeave" MouseLeftButtonDown="SignInRegisterNowButton_MouseLeftButtonDown" Cursor="Hand"/>
+            <Grid x:Name="RegButton" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,348,0,0" Cursor="Hand" MouseLeftButtonDown="RegisterButton_Click">
+                <!-- Apply a ScaleTransform to the RegButton Grid -->
+                <Grid.RenderTransform>
+                    <ScaleTransform x:Name="ButtonScaleTransform" ScaleX="1" ScaleY="1" />
+                </Grid.RenderTransform>
+                <!-- Set the RenderTransformOrigin to the center -->
+                <Grid.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5" />
+                </Grid.RenderTransformOrigin>
+                <!-- Triggers for hover effect -->
+                <Grid.Triggers>
+                    <!-- Hover In (scale up with ease-out) -->
+                    <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="RegisterButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform" Storyboard.TargetProperty="ScaleX" To="1.05" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform" Storyboard.TargetProperty="ScaleY" To="1.05" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="HoverRectangle1" Storyboard.TargetProperty="Width" To="312" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Hover Out (scale back to original size) -->
+                    <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="RegisterButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="HoverRectangle1" Storyboard.TargetProperty="Width" To="0" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Mouse Down (scale down to 0.95) -->
+                    <EventTrigger RoutedEvent="UIElement.PreviewMouseDown" SourceName="RegisterButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform" Storyboard.TargetProperty="ScaleX" To="0.98" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform" Storyboard.TargetProperty="ScaleY" To="0.98" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Mouse Up (return to original scale with ease-in-out) -->
+                    <EventTrigger RoutedEvent="UIElement.PreviewMouseUp" SourceName="RegisterButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform" Storyboard.TargetProperty="ScaleX" To="1.05" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseInOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform" Storyboard.TargetProperty="ScaleY" To="1.05" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseInOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Grid.Triggers>
+                <!-- Clipped Image -->
+                <Grid x:Name="ClippedContainer1" Width="312" Height="51" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image x:Name="RegisterButton" Source="/hovbut.png" Stretch="Fill" Opacity="1" Clip="M18,0 L312,0 L312,36 L291.28,51 L0,51 L0,16"/>
+                    <!-- Hover effect: sliding rectangle -->
+                    <Rectangle x:Name="HoverRectangle1" Width="0" Height="51" Fill="#9C2348" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top" Clip="M18,0 L312,0 L312,36 L291.28,51 L0,51 L0,16">
+                        <Rectangle.Effect>
+                            <BlurEffect Radius="50" />
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <!-- Button label -->
+                    <TextBlock Text="REGISTER" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="White" FontWeight="Bold" IsHitTestVisible="False" FontFamily="Cairo Light" />
+                </Grid>
+            </Grid>
+        </Grid>
+        <!--REGISTER FORM-->
+
+        <!--CHANGE PASSWORD FORM-->
+        <Grid x:Name="ChangePassForm"  HorizontalAlignment="Left" Grid.RowSpan="2" VerticalAlignment="Top" Margin="298,14,0,0" Opacity="0.998" Visibility="Hidden">
+            <Grid.Effect>
+                <BlurEffect Radius="0" />
+            </Grid.Effect>
+            <Label x:Name="ChangePaswordTitle" Content="CHANGE PASSWORD" HorizontalAlignment="Left" Margin="30,59,0,0" VerticalAlignment="Top" Foreground="Lavender" FontFamily="Cairo ExtraBold" FontSize="29"/>
+
+            <Image x:Name="WhatEmailBackground" Margin="0,132,0,295" Source="/Email.png" Stretch="Fill" Opacity="100" Width="323" Height="49"/>
+            <TextBox x:Name="WhatEmailTextField" HorizontalAlignment="Left" Margin="46,144,0,0" Width="240" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" Text="EMAIL" GotFocus="WhatEmailTextField_GotFocus" LostFocus="WhatEmailTextField_LostFocus" TextChanged="WhatEmailTextField_TextChanged" VerticalAlignment="Top" BorderThickness="0,0,0,0" SelectionBrush="#FF80163B" />
+
+            <Grid x:Name="NewPassGrid" Width="323" Height="49" Margin="0,208,0,220">
+                <Image x:Name="NewPasswordBackground" Source="images/TextFields/Password.png" Stretch="Fill"/>
+                <!-- PasswordBox -->
+                <PasswordBox x:Name="NewPasswordBox" HorizontalAlignment="Left" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" Padding="5,0,0,0" Visibility="Visible" GotFocus="NewPasswordBox_GotFocus" LostFocus="NewPasswordBox_LostFocus" PasswordChanged="NewPasswordBox_PasswordChanged" VerticalAlignment="Center" Margin="49,0,0,0" MaxLength="64" SelectionBrush="#FF80163B" />
+                <!-- TextBox for plain text password -->
+                <TextBox x:Name="NewPasswordTextField" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" GotFocus="NewPasswordBox_GotFocus" LostFocus="NewPasswordBox_LostFocus" TextChanged="NewPasswordBox_TextChanged" Width="221" Height="20" Visibility="Hidden" MaxLines="1" MaxLength="64" SelectionBrush="#FF80163B" />
+                <!-- Placeholder TextBlock -->
+                <TextBlock x:Name="NewPasswordPlaceholder" Text="NEW PASSWORD" VerticalAlignment="Center" Width="230" Height="21" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" Background="#FF59505E" IsHitTestVisible="False" Visibility="Visible" HorizontalAlignment="Center" Padding="5,0,0,0" />
+                <!-- Toggle Button -->
+                <Image x:Name="NewPasswordVisToggle" Source="/HidePass.png" Width="27" Height="27" VerticalAlignment="Center" HorizontalAlignment="Left" MouseLeftButtonDown="NewPasswordVisToggle_MouseLeftButtonDown" Margin="286,0,0,0" Cursor="Hand"/>
+            </Grid>
+            <Grid x:Name="NewConfirmPassGrid" Margin="0,283,0,142" Width="323" Height="49">
+                <Image x:Name="NewConfirmPasswordBackground" Source="/ConfirmPassword.png" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <!-- PasswordBox -->
+                <PasswordBox x:Name="NewConfirmPasswordBox" HorizontalAlignment="Left" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" Padding="5,0,0,0" Visibility="Visible" GotFocus="NewConfirmPasswordBox_GotFocus" LostFocus="NewConfirmPasswordBox_LostFocus" PasswordChanged="NewConfirmPasswordBox_PasswordChanged" VerticalAlignment="Center" Margin="49,0,0,0" SelectionBrush="#FF80163B" />
+                <!-- TextBox for plain text password -->
+                <TextBox x:Name="NewConfirmPasswordTextField" HorizontalAlignment="Left" Width="221" Height="21" Background="#FF59505E" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" BorderBrush="{x:Null}" BorderThickness="0" Padding="5,0,0,0" GotFocus="NewConfirmPasswordBox_GotFocus" LostFocus="NewConfirmPasswordBox_LostFocus" TextChanged="NewConfirmPasswordBox_TextChanged" VerticalAlignment="Center" Margin="49,0,0,0" Visibility="Hidden" SelectionBrush="#FF80163B" />
+                <!-- Placeholder TextBlock -->
+                <TextBlock x:Name="NewConfirmPasswordPlaceholder" Text="CONFIRM PASSWORD" VerticalAlignment="Center" Width="229.6" Height="21" FontFamily="./#Cairo" FontSize="19" Foreground="#FF2B272D" Background="#FF59505E" IsHitTestVisible="False" Visibility="Visible" HorizontalAlignment="Left" Padding="5,0,0,0" Margin="47,0,0,0" />
+                <!-- Toggle Button -->
+                <Image x:Name="NewConfirmPasswordVisToggle" Source="/HidePass.png" Width="27" Height="27" VerticalAlignment="Center" HorizontalAlignment="Left" MouseLeftButtonDown="NewConfirmPasswordVisToggle_MouseLeftButtonDown" Margin="287,0,0,0" Cursor="Hand"/>
+            </Grid>
+            <Grid x:Name="ConfirmPasswordButton" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,375,0,0" Cursor="Hand" MouseLeftButtonDown="ConfirmPasswordButton_Click">
+                <!-- Apply a ScaleTransform to the RegButton Grid -->
+                <Grid.RenderTransform>
+                    <ScaleTransform x:Name="ButtonScaleTransform2" ScaleX="1" ScaleY="1" />
+                </Grid.RenderTransform>
+                <!-- Set the RenderTransformOrigin to the center -->
+                <Grid.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5" />
+                </Grid.RenderTransformOrigin>
+                <!-- Triggers for hover effect -->
+                <Grid.Triggers>
+                    <!-- Hover In (scale up with ease-out) -->
+                    <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ConfirmPassButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform2" Storyboard.TargetProperty="ScaleX" To="1.05" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform2" Storyboard.TargetProperty="ScaleY" To="1.05" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="HoverRectangle3" Storyboard.TargetProperty="Width" To="312" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Hover Out (scale back to original size) -->
+                    <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="ConfirmPassButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform2" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform2" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="HoverRectangle3" Storyboard.TargetProperty="Width" To="0" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Mouse Down (scale down to 0.95) -->
+                    <EventTrigger RoutedEvent="UIElement.PreviewMouseDown" SourceName="ConfirmPassButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform2" Storyboard.TargetProperty="ScaleX" To="0.98" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform2" Storyboard.TargetProperty="ScaleY" To="0.98" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Mouse Up (return to original scale with ease-in-out) -->
+                    <EventTrigger RoutedEvent="UIElement.PreviewMouseUp" SourceName="ConfirmPassButton">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform2" Storyboard.TargetProperty="ScaleX" To="1.05" Duration="0:0:0.3">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseInOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform2" Storyboard.TargetProperty="ScaleY" To="1.05" Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseInOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Grid.Triggers>
+                <!-- Clipped Image -->
+                <Grid x:Name="ClippedContainer2" Width="312" Height="51" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image x:Name="ConfirmPassButton" Source="/hovbut.png" Stretch="Fill" Opacity="1" Clip="M18,0 L312,0 L312,36 L291.28,51 L0,51 L0,16"/>
+                    <!-- Hover effect: sliding rectangle -->
+                    <Rectangle x:Name="HoverRectangle3" Width="0" Height="51" Fill="#9C2348" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top" Clip="M18,0 L312,0 L312,36 L291.28,51 L0,51 L0,16">
+                        <Rectangle.Effect>
+                            <BlurEffect Radius="50" />
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <!-- Button label -->
+                    <TextBlock Text="CONFIRM" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="White" FontWeight="Bold" IsHitTestVisible="False" FontFamily="Cairo Light" />
+                </Grid>
+            </Grid>
+
+            <Label x:Name="WarningNew" Content="WARNING" Margin="0,347,0,0" VerticalAlignment="Top" Foreground="#FF80163B" FontFamily="Cairo Medium" FontSize="12.2" Cursor="Hand" HorizontalAlignment="Center" FontWeight="ExtraBlack" Visibility="Hidden"/>
+            <Label x:Name="GoBackButton" Content="GO BACK" Margin="0,440,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="12.2" FontWeight="Bold" MouseEnter="GoBackButton_MouseEnter" MouseLeave="GoBackButton_MouseLeave" MouseLeftButtonDown="GoBackButton_Click" Cursor="Hand" HorizontalAlignment="Center"/>
+        </Grid>
+        <!--CHANGE PASSWORD FORM-->
+
+        <Grid x:Name="CodeInput" Height="548" VerticalAlignment="Top" Grid.RowSpan="2" Visibility="Hidden">
+
+            <Rectangle x:Name="CodeBackground" HorizontalAlignment="Center" Height="548" Stroke="Black" VerticalAlignment="Center" Width="961" Fill="Black" Opacity="0.4"/>
+            <Label x:Name="ExitCode" Content="GO BACK" Margin="0,440,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="12.2" FontWeight="Bold" MouseEnter="ExitCode_MouseEnter" MouseLeave="ExitCode_MouseLeave" MouseLeftButtonDown="ExitCode_Click" Cursor="Hand" HorizontalAlignment="Center"/>
+            <Label x:Name="WeSentCode" Content="WE HAVE SENT YOU A CODE" Margin="0,115,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label x:Name="CheckEmail" Content="CHECK YOUR EMAIL" Margin="0,178,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="17" FontWeight="Bold" HorizontalAlignment="Center" Height="49"/>
+            <Label x:Name="DidntGet" Content="DIDN'T RECEIVE YET?" HorizontalAlignment="Left" Margin="378,386,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="9.2" FontWeight="Bold"/>
+            <Label x:Name="ResendCodeTimer" Content="RESEND IN 15s" HorizontalAlignment="Left" Margin="467,386,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="9.2" FontWeight="Bold"/>
+            <Label x:Name="ResendCodeButton" Content="RESEND CODE" HorizontalAlignment="Left" Margin="466,386,0,0" VerticalAlignment="Top" Foreground="#FFA5A3B2" FontFamily="Cairo Light" FontSize="9.2" FontWeight="Bold" MouseEnter="ResendCodeButton_MouseEnter" MouseLeave="ResendCodeButton_MouseLeave" MouseLeftButtonDown="ResendCodeButton_Click" Cursor="Hand" Visibility="Hidden"/>
+            <Label x:Name="WrongCode" Content="INCORRECT CODE, TRY AGAIN" HorizontalAlignment="Left" Margin="375,356,0,0" VerticalAlignment="Top" Foreground="#FFA3384F" FontFamily="Cairo Medium" FontSize="12.2" Background="{x:Null}" FontWeight="Bold" Visibility="Hidden"/>
+            <Grid x:Name="ConfirmCodeSection" HorizontalAlignment="Center" Margin="0,254,0,0" VerticalAlignment="Top" Width="395">
+                <TextBox x:Name="Code1" Style="{StaticResource UnderlineTextBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" Height="86" TextAlignment="Center" FontFamily="Cairo Light" FontSize="41" FontWeight="Bold" MaxLines="1" MaxLength="1" Background="{x:Null}" Foreground="#FFD3D7F1" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" TextChanged="Code_TextChanged" PreviewKeyDown="Code_PreviewKeyDown" />
+                <TextBox x:Name="Code2" Style="{StaticResource UnderlineTextBoxStyle}" HorizontalAlignment="Left" Margin="70,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" Height="86" TextAlignment="Center" FontFamily="Cairo Light" FontSize="41" FontWeight="Bold" MaxLines="1" MaxLength="1" Background="{x:Null}" Foreground="#FFD3D7F1" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" TextChanged="Code_TextChanged" PreviewKeyDown="Code_PreviewKeyDown" />
+                <TextBox x:Name="Code3" Style="{StaticResource UnderlineTextBoxStyle}" HorizontalAlignment="Left" Margin="142,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" Height="86" TextAlignment="Center" FontFamily="Cairo Light" FontSize="41" FontWeight="Bold" MaxLines="1" MaxLength="1" Background="{x:Null}" Foreground="#FFD3D7F1" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" TextChanged="Code_TextChanged" PreviewKeyDown="Code_PreviewKeyDown" />
+                <TextBox x:Name="Code4" Style="{StaticResource UnderlineTextBoxStyle}" HorizontalAlignment="Left" Margin="212,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" Height="86" TextAlignment="Center" FontFamily="Cairo Light" FontSize="41" FontWeight="Bold" MaxLines="1" MaxLength="1" Background="{x:Null}" Foreground="#FFD3D7F1" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" TextChanged="Code_TextChanged" PreviewKeyDown="Code_PreviewKeyDown" />
+                <TextBox x:Name="Code5" Style="{StaticResource UnderlineTextBoxStyle}" HorizontalAlignment="Left" Margin="280,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" Height="86" TextAlignment="Center" FontFamily="Cairo Light" FontSize="41" FontWeight="Bold" MaxLines="1" MaxLength="1" Background="{x:Null}" Foreground="#FFD3D7F1" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" TextChanged="Code_TextChanged" PreviewKeyDown="Code_PreviewKeyDown" />
+                <TextBox x:Name="Code6" Style="{StaticResource UnderlineTextBoxStyle}" HorizontalAlignment="Left" Margin="350,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="45" Height="86" TextAlignment="Center" FontFamily="Cairo Light" FontSize="41" FontWeight="Bold" MaxLines="1" MaxLength="1" Background="{x:Null}" Foreground="#FFD3D7F1" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" TextChanged="Code_TextChanged" PreviewKeyDown="Code_PreviewKeyDown" />
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
