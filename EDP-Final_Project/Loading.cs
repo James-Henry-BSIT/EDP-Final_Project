@@ -1,36 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EDP_Final_Project
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for Loading.xaml
     /// </summary>
     public partial class Loading : Page
     {
-        public Loading()
+        private bool _isLogout = false; // Flag to check if it's a logout event
+
+        public Loading(bool isLogout = false)
         {
             InitializeComponent();
 
-            // Simulate loading and navigate to LandingPage
+            _isLogout = isLogout;
+
+            // Simulate loading and navigate accordingly
             _ = LoadAndNavigateAsync();
         }
+
         private async Task LoadAndNavigateAsync()
         {
             await Task.Delay(2000); // Simulate loading delay
-            NavigationService.Navigate(new Landing());
+
+            if (_isLogout)
+            {
+                // Navigate to LoginPage.xaml if returning from logout
+                NavigationService.Navigate(new LoginPage());
+            }
+            else
+            {
+                // Navigate to Landing.xaml for normal flow
+                NavigationService.Navigate(new Landing());
+            }
         }
     }
 }

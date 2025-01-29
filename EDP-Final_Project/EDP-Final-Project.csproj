@@ -29,6 +29,7 @@
     <None Remove="HidePass.png" />
     <None Remove="hovbut.png" />
     <None Remove="images\AnimationForm.png" />
+    <None Remove="images\Art\Elphelt Valentine_EarlyPublic.png" />
     <None Remove="images\BackgroundForm.png" />
     <None Remove="images\Buttons\Checkbox1.png" />
     <None Remove="images\Buttons\Checkbox2.png" />
@@ -54,6 +55,7 @@
     <None Remove="images\Buttons\Login6.png" />
     <None Remove="images\Buttons\Login7.png" />
     <None Remove="images\Buttons\Login8.png" />
+    <None Remove="images\Buttons\Menu Arrow.png" />
     <None Remove="images\Buttons\Register1.png" />
     <None Remove="images\Buttons\Register2.png" />
     <None Remove="images\Buttons\Register3.png" />
@@ -71,6 +73,7 @@
     <None Remove="images\IllustrationForm.png" />
     <None Remove="images\Minimize.png" />
     <None Remove="images\Minimize2.png" />
+    <None Remove="images\OptionHollow.png" />
     <None Remove="images\P1.png" />
     <None Remove="images\P2.png" />
     <None Remove="images\P3.png" />
@@ -83,6 +86,7 @@
     <None Remove="images\TextFields\Password1.png" />
     <None Remove="images\TextFields\Username.png" />
     <None Remove="Login1.png" />
+    <None Remove="Menu Arrow.png" />
     <None Remove="Minimize.png" />
     <None Remove="Minimize2.png" />
     <None Remove="P1.png" />
@@ -118,8 +122,7 @@
     <Resource Include="Head.png" />
     <Resource Include="HidePass.png" />
     <Resource Include="hovbut.png" />
-    <Resource Include="images\AnimationForm.png" />
-    <Resource Include="images\BackgroundForm.png" />
+    <Resource Include="images\Art\Elphelt Valentine_EarlyPublic.png" />
     <Resource Include="images\Buttons\Checkbox1.png" />
     <Resource Include="images\Buttons\Checkbox2.png" />
     <Resource Include="images\Buttons\Checkbox3.png" />
@@ -144,6 +147,7 @@
     <Resource Include="images\Buttons\Login6.png" />
     <Resource Include="images\Buttons\Login7.png" />
     <Resource Include="images\Buttons\Login8.png" />
+    <Resource Include="images\Buttons\Menu Arrow.png" />
     <Resource Include="images\Buttons\Register1.png" />
     <Resource Include="images\Buttons\Register2.png" />
     <Resource Include="images\Buttons\Register3.png" />
@@ -157,22 +161,21 @@
     <Resource Include="images\Buttons\Up Arrow.png" />
     <Resource Include="images\Close.png" />
     <Resource Include="images\Close2.png" />
-    <Resource Include="images\example.png" />
     <Resource Include="images\IllustrationForm.png" />
     <Resource Include="images\Minimize.png" />
     <Resource Include="images\Minimize2.png" />
+    <Resource Include="images\OptionHollow.png" />
     <Resource Include="images\P1.png" />
     <Resource Include="images\P2.png" />
     <Resource Include="images\P3.png" />
     <Resource Include="images\Slide Commission Type.png" />
-    <Resource Include="images\temp.png" />
-    <Resource Include="images\temp2.png" />
     <Resource Include="images\TextFields\ConfirmPassword.png" />
     <Resource Include="images\TextFields\Email.png" />
     <Resource Include="images\TextFields\Password.png" />
     <Resource Include="images\TextFields\Password1.png" />
     <Resource Include="images\TextFields\Username.png" />
     <Resource Include="Login1.png" />
+    <Resource Include="Menu Arrow.png" />
     <Resource Include="Minimize.png" />
     <Resource Include="Minimize2.png" />
     <Resource Include="P1.png" />

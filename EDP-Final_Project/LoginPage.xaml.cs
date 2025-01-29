@@ -31,6 +31,7 @@ namespace EDP_Final_Project
         private int countdown = 30;   // Initial countdown value in seconds
         private int generatedNumber;
         private string? loggedInEmail = null;
+        private string? userName = null;
         private string FindEmail;
         private bool isChangingPassword = false;
         private string? tempass = null;
@@ -919,6 +920,9 @@ namespace EDP_Final_Project
             FadeOutCode.Completed += (s, ev) => CodeInput.Visibility = Visibility.Collapsed;
             stopblurStoryboard.Completed += (s, ev) => CodeInput.Visibility = Visibility.Collapsed;
 
+            loggedInEmail = string.Empty;
+            userName = string.Empty;
+
             Code1.Text = "";
             Code2.Text = "";
             Code3.Text = "";
@@ -993,7 +997,8 @@ namespace EDP_Final_Project
                                 // Remember the password securely
                                 RememberPassword(loggedInEmail, tempass);
                             }
-
+                            UserSession.Email = loggedInEmail;
+                            UserSession.Username = userName;
                             var mainWindow = (MainWindow)Application.Current.MainWindow;
                             mainWindow.NavigateToPage(new Loading());
                         }
@@ -1179,6 +1184,7 @@ namespace EDP_Final_Project
                             ErrorReg.Visibility = Visibility.Visible;
 
                             loggedInEmail = email;
+                            userName = username;
 
                             GenerateRandomNumber();
                             StartCountdown();
@@ -1284,6 +1290,7 @@ namespace EDP_Final_Project
                                         ErrorLog.Visibility = Visibility.Visible;
 
                                         loggedInEmail = storedEmail;
+                                        userName = storedUsername;
 
                                         // Generate the verification number and send email
                                         GenerateRandomNumber();

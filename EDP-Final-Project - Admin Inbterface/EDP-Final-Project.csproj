@@ -1,0 +1,192 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>EDP_Final_Project</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <PlatformTarget>x86</PlatformTarget>
+    <UserSecretsId>27c36d5f-66ac-4812-b2e5-271e13150f14</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Checkbox1.png" />
+    <None Remove="Close.png" />
+    <None Remove="Close2.png" />
+    <None Remove="ConfirmPassword.png" />
+    <None Remove="Email.png" />
+    <None Remove="Fonts\Cairo-Black.ttf" />
+    <None Remove="Fonts\Cairo-Bold.ttf" />
+    <None Remove="Fonts\Cairo-ExtraBold.ttf" />
+    <None Remove="Fonts\Cairo-ExtraLight.ttf" />
+    <None Remove="Fonts\Cairo-Light.ttf" />
+    <None Remove="Fonts\Cairo-Medium.ttf" />
+    <None Remove="Fonts\Cairo-Regular.ttf" />
+    <None Remove="Fonts\Cairo-SemiBold.ttf" />
+    <None Remove="Head.png" />
+    <None Remove="HidePass.png" />
+    <None Remove="hovbut.png" />
+    <None Remove="images\AnimationForm.png" />
+    <None Remove="images\Art\Elphelt Valentine_EarlyPublic.png" />
+    <None Remove="images\BackgroundForm.png" />
+    <None Remove="images\Buttons\Checkbox1.png" />
+    <None Remove="images\Buttons\Checkbox2.png" />
+    <None Remove="images\Buttons\Checkbox3.png" />
+    <None Remove="images\Buttons\Checkbox4.png" />
+    <None Remove="images\Buttons\Confirm1.png" />
+    <None Remove="images\Buttons\Confirm2.png" />
+    <None Remove="images\Buttons\Confirm3.png" />
+    <None Remove="images\Buttons\Confirm4.png" />
+    <None Remove="images\Buttons\Confirm5.png" />
+    <None Remove="images\Buttons\Confirm6.png" />
+    <None Remove="images\Buttons\Confirm7.png" />
+    <None Remove="images\Buttons\Confirm8.png" />
+    <None Remove="images\Buttons\Down Arrow.png" />
+    <None Remove="images\Buttons\HidePass.png" />
+    <None Remove="images\Buttons\Hover Down Arrow.png" />
+    <None Remove="images\Buttons\Hover Up Arrow.png" />
+    <None Remove="images\Buttons\Login1.png" />
+    <None Remove="images\Buttons\Login2.png" />
+    <None Remove="images\Buttons\Login3.png" />
+    <None Remove="images\Buttons\Login4.png" />
+    <None Remove="images\Buttons\Login5.png" />
+    <None Remove="images\Buttons\Login6.png" />
+    <None Remove="images\Buttons\Login7.png" />
+    <None Remove="images\Buttons\Login8.png" />
+    <None Remove="images\Buttons\Menu Arrow.png" />
+    <None Remove="images\Buttons\Register1.png" />
+    <None Remove="images\Buttons\Register2.png" />
+    <None Remove="images\Buttons\Register3.png" />
+    <None Remove="images\Buttons\Register4.png" />
+    <None Remove="images\Buttons\Register5.png" />
+    <None Remove="images\Buttons\Register6.png" />
+    <None Remove="images\Buttons\Register7.png" />
+    <None Remove="images\Buttons\Register8.png" />
+    <None Remove="images\Buttons\ShowPass.png" />
+    <None Remove="images\Buttons\UniButton.png" />
+    <None Remove="images\Buttons\Up Arrow.png" />
+    <None Remove="images\Close.png" />
+    <None Remove="images\Close2.png" />
+    <None Remove="images\example.png" />
+    <None Remove="images\IllustrationForm.png" />
+    <None Remove="images\Minimize.png" />
+    <None Remove="images\Minimize2.png" />
+    <None Remove="images\OptionHollow.png" />
+    <None Remove="images\P1.png" />
+    <None Remove="images\P2.png" />
+    <None Remove="images\P3.png" />
+    <None Remove="images\Slide Commission Type.png" />
+    <None Remove="images\temp.png" />
+    <None Remove="images\temp2.png" />
+    <None Remove="images\TextFields\ConfirmPassword.png" />
+    <None Remove="images\TextFields\Email.png" />
+    <None Remove="images\TextFields\Password.png" />
+    <None Remove="images\TextFields\Password1.png" />
+    <None Remove="images\TextFields\Username.png" />
+    <None Remove="Login1.png" />
+    <None Remove="Menu Arrow.png" />
+    <None Remove="Minimize.png" />
+    <None Remove="Minimize2.png" />
+    <None Remove="P1.png" />
+    <None Remove="P2.png" />
+    <None Remove="P3.png" />
+    <None Remove="Password.png" />
+    <None Remove="temp.png" />
+    <None Remove="temp2.png" />
+    <None Remove="UniButton.png" />
+    <None Remove="Username.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Checkbox1.png" />
+    <Resource Include="Close.png" />
+    <Resource Include="Close2.png" />
+    <Resource Include="ConfirmPassword.png" />
+    <Resource Include="Email.png" />
+    <EmbeddedResource Include="Fonts\Cairo-Black.ttf" />
+    <EmbeddedResource Include="Fonts\Cairo-Bold.ttf" />
+    <EmbeddedResource Include="Fonts\Cairo-ExtraBold.ttf" />
+    <EmbeddedResource Include="Fonts\Cairo-ExtraLight.ttf" />
+    <EmbeddedResource Include="Fonts\Cairo-Light.ttf" />
+    <EmbeddedResource Include="Fonts\Cairo-Medium.ttf" />
+    <EmbeddedResource Include="Fonts\Cairo-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\Cairo-SemiBold.ttf" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="EPPlus" Version="7.5.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.1" />
+    <PackageReference Include="MySqlConnector" Version="2.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Data.Odbc" Version="9.0.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+    <Resource Include="Head.png" />
+    <Resource Include="HidePass.png" />
+    <Resource Include="hovbut.png" />
+    <Resource Include="images\Art\Elphelt Valentine_EarlyPublic.png" />
+    <Resource Include="images\Buttons\Checkbox1.png" />
+    <Resource Include="images\Buttons\Checkbox2.png" />
+    <Resource Include="images\Buttons\Checkbox3.png" />
+    <Resource Include="images\Buttons\Checkbox4.png" />
+    <Resource Include="images\Buttons\Confirm1.png" />
+    <Resource Include="images\Buttons\Confirm2.png" />
+    <Resource Include="images\Buttons\Confirm3.png" />
+    <Resource Include="images\Buttons\Confirm4.png" />
+    <Resource Include="images\Buttons\Confirm5.png" />
+    <Resource Include="images\Buttons\Confirm6.png" />
+    <Resource Include="images\Buttons\Confirm7.png" />
+    <Resource Include="images\Buttons\Confirm8.png" />
+    <Resource Include="images\Buttons\Down Arrow.png" />
+    <Resource Include="images\Buttons\HidePass.png" />
+    <Resource Include="images\Buttons\Hover Down Arrow.png" />
+    <Resource Include="images\Buttons\Hover Up Arrow.png" />
+    <Resource Include="images\Buttons\Login1.png" />
+    <Resource Include="images\Buttons\Login2.png" />
+    <Resource Include="images\Buttons\Login3.png" />
+    <Resource Include="images\Buttons\Login4.png" />
+    <Resource Include="images\Buttons\Login5.png" />
+    <Resource Include="images\Buttons\Login6.png" />
+    <Resource Include="images\Buttons\Login7.png" />
+    <Resource Include="images\Buttons\Login8.png" />
+    <Resource Include="images\Buttons\Menu Arrow.png" />
+    <Resource Include="images\Buttons\Register1.png" />
+    <Resource Include="images\Buttons\Register2.png" />
+    <Resource Include="images\Buttons\Register3.png" />
+    <Resource Include="images\Buttons\Register4.png" />
+    <Resource Include="images\Buttons\Register5.png" />
+    <Resource Include="images\Buttons\Register6.png" />
+    <Resource Include="images\Buttons\Register7.png" />
+    <Resource Include="images\Buttons\Register8.png" />
+    <Resource Include="images\Buttons\ShowPass.png" />
+    <Resource Include="images\Buttons\UniButton.png" />
+    <Resource Include="images\Buttons\Up Arrow.png" />
+    <Resource Include="images\Close.png" />
+    <Resource Include="images\Close2.png" />
+    <Resource Include="images\IllustrationForm.png" />
+    <Resource Include="images\Minimize.png" />
+    <Resource Include="images\Minimize2.png" />
+    <Resource Include="images\OptionHollow.png" />
+    <Resource Include="images\P1.png" />
+    <Resource Include="images\P2.png" />
+    <Resource Include="images\P3.png" />
+    <Resource Include="images\Slide Commission Type.png" />
+    <Resource Include="images\TextFields\ConfirmPassword.png" />
+    <Resource Include="images\TextFields\Email.png" />
+    <Resource Include="images\TextFields\Password.png" />
+    <Resource Include="images\TextFields\Password1.png" />
+    <Resource Include="images\TextFields\Username.png" />
+    <Resource Include="Login1.png" />
+    <Resource Include="Menu Arrow.png" />
+    <Resource Include="Minimize.png" />
+    <Resource Include="Minimize2.png" />
+    <Resource Include="P1.png" />
+    <Resource Include="P2.png" />
+    <Resource Include="P3.png" />
+    <Resource Include="Password.png" />
+    <Resource Include="temp.png" />
+    <Resource Include="temp2.png" />
+    <Resource Include="UniButton.png" />
+    <Resource Include="Username.png" />
+  </ItemGroup>
+
+</Project>

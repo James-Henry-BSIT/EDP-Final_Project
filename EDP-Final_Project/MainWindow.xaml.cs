@@ -14,7 +14,7 @@ namespace EDP_Final_Project
         {
             InitializeComponent();
 
-            MainFrame.Navigate(new Landing());
+            MainFrame.Navigate(new LoginPage());
 
         }
         //Navigate Page

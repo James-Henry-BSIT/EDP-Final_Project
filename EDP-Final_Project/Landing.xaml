@@ -6,12 +6,361 @@
       xmlns:local="clr-namespace:EDP_Final_Project"
       mc:Ignorable="d" 
       d:DesignHeight="548" d:DesignWidth="940"
-      Title="Landing">
+      Title="Landing" Foreground="#FF151418">
 
-    <Grid>
-        <Rectangle HorizontalAlignment="Center" Height="77" VerticalAlignment="Top" Width="940" Fill="#FF2B272D"/>
+    <Grid Background="#FF151418">
+        <Grid x:Name="ContentSection">
+            <Grid x:Name="CommissionPage" Background="#FF151418">
+                <Rectangle x:Name="CommissionLabelBG" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="726" Fill="#FF80163B" Margin="214,77,0,0"/>
+                <Rectangle x:Name="CommissionSelectBG" HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="726" Fill="#FF440F23" Margin="214,109,0,0"/>
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="214,172,0,1" Height="375">
+                    <ScrollViewer.Resources>
+                        <!-- Vertical ScrollBar Style -->
+                        <Style TargetType="ScrollBar">
+                            <Setter Property="Width" Value="30" />
+                            <Setter Property="Background" Value="#FF2B272D" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ScrollBar">
+                                        <Grid>
+                                            <Rectangle Fill="#FF404040" />
+                                            <!-- Track background -->
+                                            <Track Name="PART_Track" IsDirectionReversed="True" Margin="0">
+                                                <Track.DecreaseRepeatButton>
+                                                    <RepeatButton Style="{x:Null}">
+                                                        <RepeatButton.Template>
+                                                            <ControlTemplate TargetType="RepeatButton">
+                                                                <Rectangle Fill="#232126" />
+                                                            </ControlTemplate>
+                                                        </RepeatButton.Template>
+                                                    </RepeatButton>
+                                                </Track.DecreaseRepeatButton>
+                                                <Track.IncreaseRepeatButton>
+                                                    <RepeatButton Style="{x:Null}">
+                                                        <RepeatButton.Template>
+                                                            <ControlTemplate TargetType="RepeatButton">
+                                                                <Rectangle Fill="#232126" />
+                                                            </ControlTemplate>
+                                                        </RepeatButton.Template>
+                                                    </RepeatButton>
+                                                </Track.IncreaseRepeatButton>
+                                                <Track.Thumb>
+                                                    <Thumb Background="#FF80163B">
+                                                        <Thumb.Template>
+                                                            <ControlTemplate TargetType="Thumb">
+                                                                <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0" />
+                                                            </ControlTemplate>
+                                                        </Thumb.Template>
+                                                    </Thumb>
+                                                </Track.Thumb>
+                                            </Track>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ScrollViewer.Resources>
+
+                    <Grid x:Name="IllustrationCommMenu" Height="737">
+                        <Rectangle x:Name="BGillustBody" Fill="#FF440F23" Margin="28,37,397,0" Height="38" VerticalAlignment="Top" />
+                        <Rectangle x:Name="BGIllustBackground" Fill="#FF440F23" Margin="340,65,154,0" VerticalAlignment="Top" Height="41" />
+                        <Rectangle x:Name="IndicIllustBody" Fill="#FF80163B" Margin="28,37,535,0" VerticalAlignment="Top" Height="38"/>
+                        <Rectangle x:Name="IndicIllustBackground" Fill="#FF80163B" Margin="441,65,156,0" VerticalAlignment="Top" Height="41" />
+                        <Image x:Name="BGofIllust" Source="/images/IllustrationForm.png" Width="940" Height="548" Margin="-219,-162,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        <Label x:Name="IllustFullBody" Background="Transparent" Content="FULL BODY" FontFamily="Cairo Light" Margin="39,32,0,0" Foreground="#FFE4E6FA" FontSize="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="117" MouseLeftButtonDown="IllustFullBody_MouseDown" Cursor="Hand">
+                            <Label.Triggers>
+                                <EventTrigger RoutedEvent="MouseLeftButtonDown">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ThicknessAnimation Storyboard.TargetName="IndicIllustBody"
+                                                Storyboard.TargetProperty="Margin"
+                                                To="28,37,534,0"
+                                                Duration="0:0:0.5">
+                                                <!-- Ease-Out Effect -->
+                                                <ThicknessAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseOut" Exponent="2" />
+                                                </ThicknessAnimation.EasingFunction>
+                                            </ThicknessAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Label.Triggers>
+                        </Label>
+
+                        <Label x:Name="IllustHalfBody" Background="Transparent" Content="HALF BODY" FontFamily="Cairo Light" Margin="167,32,0,0" Foreground="#FFE4E6FA" FontSize="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="121" MouseLeftButtonDown="IllustHalfBody_MouseDown" Opacity="0.5" Cursor="Hand">
+                            <Label.Triggers>
+                                <EventTrigger RoutedEvent="MouseLeftButtonDown">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ThicknessAnimation Storyboard.TargetName="IndicIllustBody"
+                                                Storyboard.TargetProperty="Margin"
+                                                To="161,37,401,0"
+                                                Duration="0:0:0.5">
+                                                <!-- Ease-Out Effect -->
+                                                <ThicknessAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseOut" Exponent="2" />
+                                                </ThicknessAnimation.EasingFunction>
+                                            </ThicknessAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Label x:Name="DetailedIllust" Content="DETAILED" FontFamily="Cairo Light" Margin="344,63,0,0" Foreground="#FFE4E6FA" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="95" MouseLeftButtonDown="IllustDetailed_MouseDown" Opacity="0.5" Cursor="Hand">
+                            <Label.Triggers>
+                                <EventTrigger RoutedEvent="MouseLeftButtonDown">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ThicknessAnimation Storyboard.TargetName="IndicIllustBackground"
+                                                Storyboard.TargetProperty="Margin"
+                                                To="340,65,255,0"
+                                                Duration="0:0:0.5">
+                                                <!-- Ease-Out Effect -->
+                                                <ThicknessAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseOut" Exponent="2" />
+                                                </ThicknessAnimation.EasingFunction>
+                                            </ThicknessAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Label x:Name="SimpleIllust" Content="SIMPLE" FontFamily="Cairo Light" Margin="452,63,0,0" Foreground="#FFE4E6FA" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="77" MouseLeftButtonDown="IllustSimple_MouseDown" Cursor="Hand">
+                            <Label.Triggers>
+                                <EventTrigger RoutedEvent="MouseLeftButtonDown">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ThicknessAnimation Storyboard.TargetName="IndicIllustBackground"
+                                                Storyboard.TargetProperty="Margin"
+                                                To="441,65,157,0"
+                                                Duration="0:0:0.5">
+                                                <!-- Ease-Out Effect -->
+                                                <ThicknessAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseOut" Exponent="2" />
+                                                </ThicknessAnimation.EasingFunction>
+                                            </ThicknessAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Label x:Name="IllustBackgroundLabel" Content="BACKGROUND" FontFamily="Cairo Light" Margin="332,22,0,0" Foreground="#FFE4E6FA" FontSize="20" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="136"/>
+                        <Label x:Name="IllustCostLabel1" Content="COST" FontFamily="Cairo Light" Margin="556,22,0,0" Foreground="#FFE4E6FA" FontSize="20" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63"/>
+                        <Label x:Name="IllustNoCharLabel" Content="NO. OF CHARACTERS" FontFamily="Cairo Light" Margin="332,127,0,0" Foreground="#FFE4E6FA" FontSize="20" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207"/>
+                        <Label x:Name="IllustVariantLabel" Content="VARIANTS/VERSIONS" FontFamily="Cairo Light" Margin="332,229,0,0" Foreground="#FFE4E6FA" FontSize="20" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="197"/>
+                        <Label x:Name="IllustBodyCostLabel" Content="COST" FontFamily="Cairo Light" Margin="233,246,0,0" Foreground="#FFE4E6FA" FontSize="18" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="55"/>
+                        <TextBlock x:Name="IllustBodyCost" HorizontalAlignment="Left" Margin="217,281,0,0" TextWrapping="Wrap" Text="+$60" VerticalAlignment="Top" Height="33" Width="79" Foreground="#FFE4E6F9" TextAlignment="Center" FontFamily="Cairo Light" FontSize="18"/>
+                        <TextBlock x:Name="IllustBackgroundCost" HorizontalAlignment="Left" Margin="563,66,0,0" TextWrapping="Wrap" Text="+$10" VerticalAlignment="Top" Height="37" Width="98" Foreground="#FFE4E6F9" TextAlignment="Center" FontFamily="Cairo Light" FontSize="20"/>
+                        <TextBlock x:Name="IllustNoCharCost" HorizontalAlignment="Left" Margin="563,170,0,0" TextWrapping="Wrap" Text="+$20" VerticalAlignment="Top" Height="37" Width="98" Foreground="#FFE4E6F9" TextAlignment="Center" FontFamily="Cairo Light" FontSize="20"/>
+                        <TextBlock x:Name="IllustVariantCost" HorizontalAlignment="Left" Margin="563,272,0,0" TextWrapping="Wrap" Text="+$10" VerticalAlignment="Top" Height="37" Width="98" Foreground="#FFE4E6F9" TextAlignment="Center" FontFamily="Cairo Light" FontSize="20"/>
+                        <TextBlock x:Name="IllustNoChar" HorizontalAlignment="Left" Margin="340,173,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Height="36" Width="58" Foreground="#FFE4E6F9" TextAlignment="Center" FontFamily="Cairo Light" FontSize="20"/>
+                        <TextBlock x:Name="IllustVariant" HorizontalAlignment="Left" Margin="340,277,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Height="36" Width="58" Foreground="#FFE4E6F9" TextAlignment="Center" FontFamily="Cairo Light" FontSize="20"/>
+                        <Image x:Name="UpILLUSTnochar" Margin="397,173,281,546" Source="/images/Buttons/Up Arrow.png" Stretch="Fill" MouseLeftButtonDown="UpIllustNoChar_MouseDown" MouseEnter="Arrow_MouseEnter" MouseLeave="Arrow_MouseLeave" Cursor="Hand"/>
+                        <Image x:Name="DownILLUSTnochar" Margin="397,191,281,528" Source="/images/Buttons/Down Arrow.png" Stretch="Fill" Height="18" MouseLeftButtonDown="DownIllustNoChar_MouseDown" MouseEnter="Arrow_MouseEnter" MouseLeave="Arrow_MouseLeave" Cursor="Hand"/>
+                        <Image x:Name="UpILLUSTvariant" Margin="397,277,281,442" Source="/images/Buttons/Up Arrow.png" Stretch="Fill" Width="18" MouseLeftButtonDown="UpIllustVariant_MouseDown" MouseEnter="Arrow_MouseEnter" MouseLeave="Arrow_MouseLeave" Cursor="Hand"/>
+                        <Image x:Name="DownILLUSTvariant" Margin="397,295,281,424" Source="/images/Buttons/Down Arrow.png" Stretch="Fill" Width="18" Height="18" MouseLeftButtonDown="DownIllustVariant_MouseDown" MouseEnter="Arrow_MouseEnter" MouseLeave="Arrow_MouseLeave" Cursor="Hand"/>
+
+                        <Image Source="/images/Art/Elphelt Valentine_EarlyPublic.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" Height="226" Margin="28,88,0,0">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <!-- 20, 357 -->
+                        <Grid Margin="20,357,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="379" Background="#FF151418">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="619*"/>
+                                <ColumnDefinition Width="30*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Fill="#FF440F23" Margin="5,238,413,0" VerticalAlignment="Top" Height="41" />
+                            <Rectangle x:Name="IndicCommercial" Fill="#FF80163B" Margin="105,238,413,0" VerticalAlignment="Top" Height="41" />
+                            <Rectangle Fill="#FF440F23" Margin="5,325,413,0" VerticalAlignment="Top" Height="41" />
+                            <Rectangle Fill="#FF80163B" Margin="7,325,488,0" VerticalAlignment="Top" Height="41" />
+                            <Image Margin="0,231,0,0" Source="/images/OptionHollow.png" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" Height="52" Width="210"/>
+                            <Image Margin="0,318,409,0" Source="/images/OptionHollow.png" Stretch="Fill" VerticalAlignment="Top" Height="52" Width="210"/>
+                            <Label x:Name="CommercialYes" Content="YES" FontFamily="Cairo Light" Margin="33,233,0,0" Foreground="#FFE4E6FA" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.5" MouseLeftButtonDown="IllustCommercialYes_MouseDown" Cursor="Hand">
+                                <Label.Triggers>
+                                    <EventTrigger RoutedEvent="MouseLeftButtonDown">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ThicknessAnimation Storyboard.TargetName="IndicCommercial"
+                                                Storyboard.TargetProperty="Margin"
+                                                To="8,238,510,0"
+                                                Duration="0:0:0.5">
+                                                    <!-- Ease-Out Effect -->
+                                                    <ThicknessAnimation.EasingFunction>
+                                                        <ExponentialEase EasingMode="EaseOut" Exponent="2" />
+                                                    </ThicknessAnimation.EasingFunction>
+                                                </ThicknessAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label x:Name="CommercialNo" Content="NO" FontFamily="Cairo Light" Margin="134,233,0,0" Foreground="#FFE4E6FA" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Height="37" MouseLeftButtonDown="IllustCommercialNo_MouseDown" Cursor="Hand">
+                                <Label.Triggers>
+                                    <EventTrigger RoutedEvent="MouseLeftButtonDown">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ThicknessAnimation Storyboard.TargetName="IndicCommercial"
+                                                Storyboard.TargetProperty="Margin"
+                                                To="105,238,413,0"
+                                                Duration="0:0:0.5">
+                                                    <!-- Ease-Out Effect -->
+                                                    <ThicknessAnimation.EasingFunction>
+                                                        <ExponentialEase EasingMode="EaseOut" Exponent="2" />
+                                                    </ThicknessAnimation.EasingFunction>
+                                                </ThicknessAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label x:Name="TotalCostLabel" Content="TOTAL COST" FontFamily="Cairo Light" Margin="16,322,0,0" Foreground="#FFE4E6FA" FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            <Label x:Name="CommercialUseLabel" Content="COMMERCIAL USE" FontFamily="Cairo Light" Margin="1,192,0,0" Foreground="#FFE4E6FA" FontSize="20" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            <Label x:Name="InsertDescLabel" Content="INSERT DESCRIPTION" FontFamily="Cairo Light" Margin="1,7,0,0" Foreground="#FFE4E6FA" FontSize="20" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            <TextBox x:Name="DescriptionInput" HorizontalAlignment="Left" Margin="7,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Height="127" BorderBrush="{x:Null}" Background="#FF3D3A44" SelectionBrush="#FF80163B" FontFamily="Cairo Medium" Foreground="#FFEBF2FD" FontSize="13" BorderThickness="0,0,0,0"/>
+                            <Label x:Name="PaymentProcessHeader" Content="PAYMENT PROCESS" FontFamily="Cairo" Margin="311,0,0,0" Foreground="#FFE4E6FA" FontSize="27" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+                            <TextBlock x:Name="Process_description" FontFamily="Cairo Light" Margin="341,50,0,0" Foreground="#FFE4E6F8" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" AutomationProperties.ItemType="Dash" Width="292" TextAlignment="Justify" Height="240" TextWrapping="Wrap" FontWeight="UltraLight" FontSize="13" Grid.ColumnSpan="2"><Run Text="Refunds are only allowed if the commission hasn't started yet."/><LineBreak/><Run/><LineBreak/><Run Text="Choose your preferred choice of payment."/><LineBreak/><Run/><LineBreak/><Run Text="Only USD rates are accepted."/><LineBreak/><Run/><LineBreak/><Run Text="The price in this form is still a  rough base estimate. An exact price will be provided to you after every detail has been given."/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+                            <Grid x:Name="ConfirmSubmitButton" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="321,314,0,0" Cursor="Hand" Grid.ColumnSpan="2" MouseLeftButtonDown="ConfirmSubmitButton_Click">
+                                <!-- Apply a ScaleTransform to the RegButton Grid -->
+                                <Grid.RenderTransform>
+                                    <ScaleTransform x:Name="ButtonScaleTransform4" ScaleX="1" ScaleY="1" />
+                                </Grid.RenderTransform>
+                                <!-- Set the RenderTransformOrigin to the center -->
+                                <Grid.RenderTransformOrigin>
+                                    <Point X="0.5" Y="0.5" />
+                                </Grid.RenderTransformOrigin>
+                                <!-- Triggers for hover effect -->
+                                <Grid.Triggers>
+                                    <!-- Hover In (scale up with ease-out) -->
+                                    <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="ConfirmPassButton">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform4" Storyboard.TargetProperty="ScaleX" To="1.05" Duration="0:0:0.2">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform4" Storyboard.TargetProperty="ScaleY" To="1.05" Duration="0:0:0.2">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="HoverRectangle34" Storyboard.TargetProperty="Width" To="312" Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <!-- Hover Out (scale back to original size) -->
+                                    <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="ConfirmPassButton">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform4" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.3">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform4" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.3">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="HoverRectangle34" Storyboard.TargetProperty="Width" To="0" Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <!-- Mouse Down (scale down to 0.95) -->
+                                    <EventTrigger RoutedEvent="UIElement.PreviewMouseDown" SourceName="ConfirmPassButton">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform4" Storyboard.TargetProperty="ScaleX" To="0.98" Duration="0:0:0.2">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform4" Storyboard.TargetProperty="ScaleY" To="0.98" Duration="0:0:0.3">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <!-- Mouse Up (return to original scale with ease-in-out) -->
+                                    <EventTrigger RoutedEvent="UIElement.PreviewMouseUp" SourceName="ConfirmPassButton">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform4" Storyboard.TargetProperty="ScaleX" To="1.05" Duration="0:0:0.3">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseInOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonScaleTransform4" Storyboard.TargetProperty="ScaleY" To="1.05" Duration="0:0:0.2">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuadraticEase EasingMode="EaseInOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Grid.Triggers>
+                                <!-- Clipped Image -->
+                                <Grid x:Name="ClippedContainer2" Width="312" Height="51" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Image x:Name="ConfirmPassButton" Source="/hovbut.png" Stretch="Fill" Opacity="1" Clip="M18,0 L312,0 L312,36 L291.28,51 L0,51 L0,16"/>
+                                    <!-- Hover effect: sliding rectangle -->
+                                    <Rectangle x:Name="HoverRectangle34" Width="0" Height="51" Fill="#9C2348" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top" Clip="M18,0 L312,0 L312,36 L291.28,51 L0,51 L0,16">
+                                        <Rectangle.Effect>
+                                            <BlurEffect Radius="50" />
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                    <!-- Button label -->
+                                    <TextBlock Text="CONFIRM" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="White" FontWeight="Bold" IsHitTestVisible="False" FontFamily="Cairo Light" />
+                                </Grid>
+                            </Grid>
+                            <TextBlock x:Name="DetailedIllust_Copy11" FontFamily="Cairo Light" Margin="319,122,0,0" Foreground="#FFE4E6F8" RenderTransformOrigin="0.525,0.49" VerticalAlignment="Top" HorizontalAlignment="Left" AutomationProperties.ItemType="Dash" Width="6" TextAlignment="Justify" Height="15" TextWrapping="Wrap" FontSize="14" Text="-"/>
+                            <TextBlock x:Name="DetailedIllust_Copy12" FontFamily="Cairo Light" Margin="319,171,0,0" Foreground="#FFE4E6F8" RenderTransformOrigin="0.525,0.49" VerticalAlignment="Top" HorizontalAlignment="Left" AutomationProperties.ItemType="Dash" Width="6" TextAlignment="Justify" Height="15" TextWrapping="Wrap" FontSize="14" Text="-"/>
+                            <TextBlock x:Name="DetailedIllust_Copy13" FontFamily="Cairo Light" Margin="319,220,0,0" Foreground="#FFE4E6F8" RenderTransformOrigin="0.525,0.49" VerticalAlignment="Top" HorizontalAlignment="Left" AutomationProperties.ItemType="Dash" Width="6" TextAlignment="Justify" Height="15" TextWrapping="Wrap" FontSize="14" Text="-"/>
+                            <TextBlock x:Name="DetailedIllust_Copy14" FontFamily="Cairo Light" Margin="319,50,0,0" Foreground="#FFE4E6F8" RenderTransformOrigin="0.525,0.49" VerticalAlignment="Top" HorizontalAlignment="Left" AutomationProperties.ItemType="Dash" Width="6" TextAlignment="Justify" Height="15" TextWrapping="Wrap" FontSize="14" Text="-"/>
+                            <TextBlock x:Name="TotalPrice" HorizontalAlignment="Left" Margin="131,326,0,0" TextWrapping="Wrap" Text="$100" VerticalAlignment="Top" FontFamily="Cairo Light" Foreground="#FFE4E6FA" TextAlignment="Center" FontSize="18" Height="37" Width="73"/>
+                            <Rectangle HorizontalAlignment="Left" Height="15" Margin="254,163,0,0" VerticalAlignment="Top" Width="39" Fill="#FF151418" RenderTransformOrigin="0.5,0.5">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="-50.934"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+                <Grid x:Name="CommissionTypeSelect">
+                    <Rectangle x:Name="CommissionSelectIndict" HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="275" Fill="#FF80163B" Margin="194,107,0,0" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-22.004"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-12.729"/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Label x:Name="IllustrationLabel" Content="ILLUSTRATION" FontFamily="Cairo" Margin="235,107,509,385" FontSize="30" Foreground="#FFE4E6FA" Cursor="Hand"/>
+                    <Label x:Name="AnimationLebel" Content="ANIMATION" FontFamily="Cairo" Margin="501,107,278,385" FontSize="30" Foreground="#FFE4E6FA" Opacity="0.5" Cursor="Hand"/>
+                    <Label x:Name="BackgroundLabel" Content="BACKGROUND" FontFamily="Cairo" Margin="736,107,10,385" FontSize="30" Foreground="#FFE4E6FA" Opacity="0.5" Cursor="Hand"/>
+                    <Label x:Name="CommmissionType" Content="COMMISSION TYPE" FontFamily="Cairo" Margin="476,65,257,427" Foreground="#FFE4E6FA" FontSize="24" Cursor="Hand"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
         <Grid x:Name="MenuSelection">
             <Grid.Resources>
+                <!-- Move Hover indicator -->
                 <Storyboard x:Key="MoveToHome">
                     <ThicknessAnimation Storyboard.TargetName="HoverMenu"
                                     Storyboard.TargetProperty="Margin"
@@ -62,47 +411,161 @@
                         </ThicknessAnimation.EasingFunction>
                     </ThicknessAnimation>
                 </Storyboard>
+                <!-- Move Hover indicator -->
 
+                <!-- Expand and collapse Hover indicator -->
                 <Storyboard x:Key="ExpandHoverMenuHeight">
                     <DoubleAnimation Storyboard.TargetName="HoverMenu"
-                         Storyboard.TargetProperty="Height"
-                         To="55"
-                         Duration="0:0:0.7">
+                     Storyboard.TargetProperty="RenderTransform.ScaleY"
+                         To="1"
+                         Duration="0:0:0.4">
                         <DoubleAnimation.EasingFunction>
                             <CubicEase EasingMode="EaseOut" />
                         </DoubleAnimation.EasingFunction>
                     </DoubleAnimation>
                 </Storyboard>
-
-                <!-- Storyboard to collapse HoverMenu height -->
                 <Storyboard x:Key="CollapseHoverMenuHeight">
                     <DoubleAnimation Storyboard.TargetName="HoverMenu"
-                         Storyboard.TargetProperty="Height"
+                     Storyboard.TargetProperty="RenderTransform.ScaleY"
                          To="0"
-                         Duration="0:0:0.7">
+                         Duration="0:0:0.4">
                         <DoubleAnimation.EasingFunction>
                             <CubicEase EasingMode="EaseOut" />
                         </DoubleAnimation.EasingFunction>
                     </DoubleAnimation>
                 </Storyboard>
+                <!-- Expand and collapse Hover indicator -->
+
+                <!-- Select Indict Move -->
+                <Storyboard x:Key="MoveIndictToHome">
+                    <ThicknessAnimation Storyboard.TargetName="MenuSelectIndict"
+                            Storyboard.TargetProperty="Margin"
+                            To="0,77,0,0"
+                            Duration="0:0:0.3">
+                        <ThicknessAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </ThicknessAnimation.EasingFunction>
+                    </ThicknessAnimation>
+                </Storyboard>
+                <Storyboard x:Key="MoveIndictToUpdates">
+                    <ThicknessAnimation Storyboard.TargetName="MenuSelectIndict"
+                            Storyboard.TargetProperty="Margin"
+                            To="0,132,0,0"
+                            Duration="0:0:0.3">
+                        <ThicknessAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </ThicknessAnimation.EasingFunction>
+                    </ThicknessAnimation>
+                </Storyboard>
+                <Storyboard x:Key="MoveIndictToCommissions">
+                    <ThicknessAnimation Storyboard.TargetName="MenuSelectIndict"
+                            Storyboard.TargetProperty="Margin"
+                            To="0,187,0,0"
+                            Duration="0:0:0.3">
+                        <ThicknessAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </ThicknessAnimation.EasingFunction>
+                    </ThicknessAnimation>
+                </Storyboard>
+                <Storyboard x:Key="MoveIndictToNotifications">
+                    <ThicknessAnimation Storyboard.TargetName="MenuSelectIndict"
+                            Storyboard.TargetProperty="Margin"
+                            To="0,242,0,0"
+                            Duration="0:0:0.3">
+                        <ThicknessAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </ThicknessAnimation.EasingFunction>
+                    </ThicknessAnimation>
+                </Storyboard>
+                <Storyboard x:Key="MoveIndictToSocials">
+                    <ThicknessAnimation Storyboard.TargetName="MenuSelectIndict"
+                        Storyboard.TargetProperty="Margin"
+                        To="0,298,0,0"
+                        Duration="0:0:0.3">
+                        <ThicknessAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </ThicknessAnimation.EasingFunction>
+                    </ThicknessAnimation>
+                </Storyboard>
+                <!-- Select Indict Move -->
             </Grid.Resources>
             <Rectangle x:Name="MenuBG" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="214" Fill="#FF242128" Margin="0,77,0,0" Grid.RowSpan="2"/>
-            <Rectangle x:Name="MenuSelectIndict" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="214" Fill="#FF80163B" Margin="0,77,0,0"/>
+            <Rectangle x:Name="MenuSelectIndict" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="214" Fill="#FF80163B" Margin="0,187,0,0"/>
             <Label x:Name="HomeLabel" Content="HOME" HorizontalAlignment="Left" Margin="11,77,0,0" VerticalAlignment="Top" Foreground="Lavender" Width="208" Height="55" FontFamily="Cairo Light" FontSize="24" Cursor="Hand" MouseLeftButtonDown="HomeLabel_Click" MouseEnter="HomeLabel_Hover" MouseLeave="Hover_Retract"/>
             <Label x:Name="UpdatesLabel" Content="UPDATES" HorizontalAlignment="Left" Margin="11,132,0,0" VerticalAlignment="Top" Foreground="Lavender" Width="208" Height="55" FontFamily="Cairo Light" FontSize="24" Cursor="Hand" MouseLeftButtonDown="UpdatesLabel_Click" MouseEnter="UpdatesLabel_Hover" MouseLeave="Hover_Retract"/>
             <Label x:Name="CommissionLabel" Content="COMMISSION" HorizontalAlignment="Left" Margin="11,187,0,0" VerticalAlignment="Top" Foreground="Lavender" Width="208" Height="55" FontFamily="Cairo Light" FontSize="24" Cursor="Hand" MouseLeftButtonDown="CommissionLabel_Click" MouseEnter="CommissionLabel_Hover" MouseLeave="Hover_Retract"/>
             <Label x:Name="NotificationsLabel" Content="NOTIFICATIONS" HorizontalAlignment="Left" Margin="11,242,0,0" VerticalAlignment="Top" Foreground="Lavender" Width="208" Height="55" FontFamily="Cairo Light" FontSize="24" Cursor="Hand" MouseLeftButtonDown="NotificationsLabel_Click" MouseEnter="NotificationsLabel_Hover" MouseLeave="Hover_Retract" Grid.Row="0"/>
             <Label x:Name="SocialsLabel" Content="SOCIALS" HorizontalAlignment="Left" Margin="11,298,0,0" VerticalAlignment="Top" Foreground="Lavender" Width="208" Height="55" FontFamily="Cairo Light" FontSize="24" Cursor="Hand" MouseLeftButtonDown="SocialsLabel_Click" MouseEnter="SocialsLabel_Hover" MouseLeave="Hover_Retract"/>
-            <Rectangle x:Name="HoverMenu" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="4" Fill="#FF80163B" Margin="0,298,0,0"/>
-
-        </Grid>
-        <Grid x:Name="ContentSection">
-            <Grid x:Name="CommissionPage">
-                <Grid x:Name="CommissionTypeSelect">
-
-                </Grid>
-
+            <Rectangle x:Name="HoverMenu" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="4" Fill="#FF80163B" Margin="0,187,0,0">
+                <Rectangle.RenderTransform>
+                    <ScaleTransform ScaleY="1" CenterX="2.5" CenterY="27.5" />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Grid x:Name="LogOutOption" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,35" MouseLeftButtonDown="LogOutOption_MouseLeftButtonDown" Cursor="Hand">
+                <Grid.Resources>
+                    <!-- Margin Animation -->
+                    <Storyboard x:Key="ExpandLogOutOption">
+                        <ThicknessAnimation Storyboard.TargetName="LogOutOption"
+                            Storyboard.TargetProperty="Margin"
+                            To="0,0,0,61" Duration="0:0:0.5">
+                            <ThicknessAnimation.EasingFunction>
+                                <SineEase EasingMode="EaseInOut" />
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+                    </Storyboard>
+                    <Storyboard x:Key="CollapseLogOutOption">
+                        <ThicknessAnimation Storyboard.TargetName="LogOutOption"
+                            Storyboard.TargetProperty="Margin"
+                            To="0,0,0,35" Duration="0:0:0.5">
+                            <ThicknessAnimation.EasingFunction>
+                                <SineEase EasingMode="EaseInOut" />
+                            </ThicknessAnimation.EasingFunction>
+                        </ThicknessAnimation>
+                    </Storyboard>
+                </Grid.Resources>
+                <Rectangle x:Name="MenuBG_Copy3" HorizontalAlignment="Center" Height="26" VerticalAlignment="Top" Width="214" Fill="#FF440F23"/>
+                <TextBlock x:Name="LogoutAcc" HorizontalAlignment="Left" Margin="11,1,0,0" VerticalAlignment="Top" Foreground="#FFF17E93" Width="104" Height="21" FontFamily="Cairo Medium" Cursor="Hand" Text="LOGOUT ACCOUNT" />
             </Grid>
+            <Rectangle x:Name="MenuBG_Copy" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="214" Fill="#FF453D50" Margin="0,487,0,0"/>
+            <Rectangle x:Name="MenuBG_Copy1" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="214" Fill="#FF80163B" Margin="0,487,0,0"/>
+            <TextBlock x:Name="Username" Text="USERNAME" HorizontalAlignment="Left" Margin="11,507,0,0" VerticalAlignment="Top" Foreground="Lavender" Width="171" Height="46" FontFamily="Cairo Medium" FontSize="24" TextTrimming="CharacterEllipsis"/>
+            <TextBlock x:Name="WelcomeText" HorizontalAlignment="Left" Margin="11,489,0,0" VerticalAlignment="Top" Foreground="Lavender" Width="82" Height="21" FontFamily="Cairo Light" Cursor="Hand" MouseLeftButtonDown="SocialsLabel_Click" MouseEnter="SocialsLabel_Hover" MouseLeave="Hover_Retract" TextTrimming="CharacterEllipsis" FontWeight="Bold"><Run Text="WELCOME"/></TextBlock>
+
+            <Grid x:Name="AddMenuSelect" HorizontalAlignment="Left" Margin="187,487,0,0" Width="28" Height="61" Cursor="Hand" MouseEnter="AddMenuSelect_MouseEnter" MouseLeave="AddMenuSelect_MouseLeave" MouseLeftButtonDown="AddMenuSelect_MouseLeftButtonDown">
+                <Grid.Resources>
+                    <!-- Color Change Animation -->
+                    <ColorAnimation x:Key="HoverColorChange" To="#FF41384D" Duration="0:0:0.2" />
+                    <ColorAnimation x:Key="HoverColorRevert" To="#FF362E42" Duration="0:0:0.2" />
+
+                    <!-- Rotation Animation -->
+                    <Storyboard x:Key="RotateArrow">
+                        <DoubleAnimation Storyboard.TargetName="AddSelect" 
+                         Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)" 
+                         To="180" Duration="0:0:0.5">
+                            <DoubleAnimation.EasingFunction>
+                                <SineEase EasingMode="EaseInOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                    <Storyboard x:Key="RotateArrowBack">
+                        <DoubleAnimation Storyboard.TargetName="AddSelect" 
+                         Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)" 
+                         To="0" Duration="0:0:0.5">
+                            <DoubleAnimation.EasingFunction>
+                                <SineEase EasingMode="EaseInOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </Grid.Resources>
+                <Rectangle x:Name="AddSelectBG" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="27" Fill="#FF362E42"/>
+                <Image x:Name="AddSelect"  Source="/Menu Arrow.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Height="9" Width="14">
+                    <Image.RenderTransform>
+                        <RotateTransform Angle="0" CenterX="7" CenterY="4.5" />
+                    </Image.RenderTransform>
+                </Image>
+            </Grid>
+            <TextBlock x:Name="WelcomeText_Copy" HorizontalAlignment="Left" Margin="11,489,0,0" VerticalAlignment="Top" Foreground="Lavender" Width="82" Height="21" FontFamily="Cairo Light" Cursor="Hand" MouseLeftButtonDown="SocialsLabel_Click" MouseEnter="SocialsLabel_Hover" MouseLeave="Hover_Retract" TextTrimming="CharacterEllipsis" FontWeight="Bold" Text="WELCOME"/>
         </Grid>
+        <Rectangle HorizontalAlignment="Center" Height="77" VerticalAlignment="Top" Width="940" Fill="#FF2B272D"/>
     </Grid>
 </Page>
